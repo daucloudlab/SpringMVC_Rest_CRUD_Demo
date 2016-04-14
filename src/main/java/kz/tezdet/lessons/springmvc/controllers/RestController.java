@@ -12,7 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
@@ -20,8 +23,10 @@ public class RestController {
     UserService userService = new UserServiceImpl() ;
 
     @RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<Void> test(){
-        return new ResponseEntity<Void>(HttpStatus.ACCEPTED) ;
+    public ResponseEntity<Map<String, Object>> test(){
+        Map<String, Object> map = new HashMap<String, Object>() ;
+        map.put("message","Test") ;
+        return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK) ;
     }
 
     //-------------------Retrieve All Users--------------------------------------------------------
